@@ -82,7 +82,7 @@ public class LoginActivity extends ActionBarActivity {
 
                 }
 
-                //startActivity(new Intent(LoginActivity.this,MainActivity.class));
+    
             }
         });
 
@@ -162,41 +162,6 @@ public class LoginActivity extends ActionBarActivity {
     }
 
 
-//    public void ll(){
-//        try
-//        {
-//            HttpClient client = new DefaultHttpClient();
-//            HttpPost post = new HttpPost(URL);
-//
-//            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-//            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-//
-//            entityBuilder.addTextBody(USER_ID, userId);
-//            entityBuilder.addTextBody(NAME, name);
-//            entityBuilder.addTextBody(TYPE, type);
-//            entityBuilder.addTextBody(COMMENT, comment);
-//            entityBuilder.addTextBody(LATITUDE, String.valueOf(User.Latitude));
-//            entityBuilder.addTextBody(LONGITUDE, String.valueOf(User.Longitude));
-//
-//            if(file != null)
-//            {
-//                entityBuilder.addBinaryBody(IMAGE, file);
-//            }
-//
-//            HttpEntity entity = entityBuilder.build();
-//            post.setEntity(entity);
-//            HttpResponse response = client.execute(post);
-//            HttpEntity httpEntity = response.getEntity();
-//            result = EntityUtils.toString(httpEntity);
-//            Log.v("result", result);
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
-//
-
     public void login(final String username, final String password,final String domain){
 
         if(checkInternetConenction()) {
@@ -240,7 +205,7 @@ public class LoginActivity extends ActionBarActivity {
                     HttpCall httpCall = new HttpCall();
                     httpCall.buildRequest(urlBuilder.toString(), "", "", "POST", "multipart/form-data");
                     httpCall.setMultipartEntity(mEntity);
-                    //HttpResponse httpResponse =  httpCall.executeCallGetResponse();
+              
                     final String resposeString = httpCall.executeCallGetString();
 
                     if (resposeString != null) {
@@ -296,21 +261,20 @@ public class LoginActivity extends ActionBarActivity {
 
     }
     private boolean checkInternetConenction() {
-        // get Connectivity Manager object to check connection
+ 
         ConnectivityManager connec =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
-        // Check for network connections
         if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
 
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-           // Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+  
             return true;
         }else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
                         connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
-           // Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
+    
             return false;
         }
         return false;
@@ -328,9 +292,6 @@ public class LoginActivity extends ActionBarActivity {
 
 
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-//        Map<String,String> params = new HashMap<String, String>();
-//        params.put("username", String.valueOf(username));
-//        params.put("password", String.valueOf(pass));
 
         StringRequest sr = new StringRequest(Request.Method.POST,"http://dexjac.com/admin/index.php?route=common/login",new Response.Listener<String>() {
             @Override
@@ -356,14 +317,14 @@ public class LoginActivity extends ActionBarActivity {
                else{
                     Log.d("ra",response.toString());
                 }
-              //  mPostCommentResponse.requestCompleted();
+    
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("ra",error.toString());
 
-                //mPostCommentResponse.requestEndedWithError(error);
+   
             }
         }){
             @Override
